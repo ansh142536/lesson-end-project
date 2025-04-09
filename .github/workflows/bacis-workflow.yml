@@ -1,8 +1,22 @@
 name: GitHub Actions Demo
-run-name: Testing out GitHub Actions
+run-name: Running Java Calculator
+
 on: [push]
+
 jobs:
-  Basic-Workflow:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo " Job is executing as part of Basic workflow"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+
+      - name: Compile Java file
+        run: javac Calculator.java
+
+      - name: Run Java program
+        run: java Calculator
